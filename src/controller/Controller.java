@@ -9,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.CollectionHistoryListImpl;
 import model.HistoryLine;
 import model.Model;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
@@ -22,7 +21,7 @@ public class Controller {
     private double num2 = 0;
     private boolean switchTF;
     private String operation = "";
-    private Model model = new Model();
+    private Model model;
 
     @FXML
     TextField outputNum1;
@@ -71,7 +70,6 @@ public class Controller {
             action.setText(value);
         } else {
             if (operation.isEmpty()) {
-                return;
             } else {
                 switchTF = false;
                 operation = "";
@@ -114,7 +112,7 @@ public class Controller {
             num2 = 0;
         }
         try {
-            BigDecimal bigDecimal = new BigDecimal(model.calculation(num1, num2, operation));
+            BigDecimal bigDecimal = BigDecimal.valueOf(Model.calculation(num1, num2, operation));
             bigDecimal = bigDecimal.setScale(15, RoundingMode.HALF_UP);
             result.setText(String.valueOf(bigDecimal.doubleValue()));
         } catch (NumberFormatException e) {

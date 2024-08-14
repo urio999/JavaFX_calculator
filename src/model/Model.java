@@ -3,17 +3,12 @@ package model;
 public class Model {
 
     public static double calculation(double a, double b, String operation) {
-        switch (operation) {
-            case "+":
-                return a + b;
-            case "-":
-                return a - b;
-            case "*":
-                return a * b;
-            case "/":
-                return a / b;
-            default:
-        }
-        return 0;
+        return switch (operation) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
+            case "/" -> a / b;
+            default -> 0;
+        };
     }
 }
